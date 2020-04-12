@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Playathon</string>
+    <string name="title_activity_participation_map">Map</string>
+    <string name="title_activity_maps">Map</string>
+</resources>

@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "511120424408",
+    "firebase_url": "https://playathon-c7eeb.firebaseio.com",
+    "project_id": "playathon-c7eeb",
+    "storage_bucket": "playathon-c7eeb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:511120424408:android:94e462a673ce36983146ad",
+        "android_client_info": {
+          "package_name": "com.example.playathon"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "511120424408-7d5ki0fjorhaupgnfhem16km3uh12f7o.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.playathon",
+            "certificate_hash": "180dd9da74cd3509349b555e491128fe231ef328"
+          }
+        },
+        {
+          "client_id": "511120424408-j938pf4pfuoh7ha2srr5fmujtuqcou8t.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBIIOcEBN42TXXdQS8-Nq6JnUJ9du8zZ8w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "511120424408-j938pf4pfuoh7ha2srr5fmujtuqcou8t.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
