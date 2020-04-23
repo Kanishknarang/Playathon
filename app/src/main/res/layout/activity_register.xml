@@ -10,8 +10,15 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:id="@+id/username"
+            android:hint="Name"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:hint="email"
-            android:id="@+id/register_email_text"/>
+            android:id="@+id/register_email_text"
+            android:layout_below="@+id/username"/>
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

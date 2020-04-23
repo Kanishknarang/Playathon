@@ -17,6 +17,7 @@ public class WelcomeActivity extends AppCompatActivity {
     private Button logout;
     private Button organize;
     private Button participate;
+    private Button mySports;
 
 
     @Override
@@ -28,6 +29,7 @@ public class WelcomeActivity extends AppCompatActivity {
         logout = (Button) findViewById(R.id.logout_btn);
         organize = (Button) findViewById(R.id.organize);
         participate = (Button) findViewById(R.id.participate);
+        mySports =(Button) findViewById(R.id.my_sports_btn);
 
         organize.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -43,6 +45,14 @@ public class WelcomeActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(WelcomeActivity.this, ParticipationMapActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        mySports.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(WelcomeActivity.this, MySportsActivity.class);
                 startActivity(intent);
             }
         });

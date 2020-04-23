@@ -20,6 +20,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class RegisterActivity extends AppCompatActivity {
 
+    private EditText mUsername;
     private EditText memail;
     private EditText mpassword;
     private Button registerbtn;
@@ -35,6 +36,7 @@ public class RegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
+        mUsername = (EditText) findViewById(R.id.username);
         memail =(EditText) findViewById(R.id.register_email_text);
         mpassword = (EditText)findViewById(R.id.register_password_text);
         registerbtn = (Button) findViewById(R.id.register_button);
@@ -69,6 +71,7 @@ public class RegisterActivity extends AppCompatActivity {
     private void startRegistartion(){
         String email = memail.getText().toString();
         String password = mpassword.getText().toString();
+        final String username = mUsername.getText().toString();
 
         if (TextUtils.isEmpty(email)||TextUtils.isEmpty(password)){
             Toast.makeText(RegisterActivity.this,"field empty",Toast.LENGTH_LONG).show();
@@ -80,8 +83,8 @@ public class RegisterActivity extends AppCompatActivity {
                         Toast.makeText(RegisterActivity.this, "login problem!", Toast.LENGTH_LONG).show();
                     }else{
                         userId = mAuth.getCurrentUser().getUid();
-                        databaseRef = FirebaseDatabase.getInstance().getReference().child("users").child(userId);
-                        databaseRef.setValue(true);
+                        databaseRef = FirebaseDatabase.getInstance().getReference().child("users").child(userId).child("username");
+                        databaseRef.setValue(username);
 
                         Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
                         startActivity(intent);

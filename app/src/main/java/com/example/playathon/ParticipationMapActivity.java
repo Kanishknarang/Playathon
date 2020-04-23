@@ -77,7 +77,7 @@ public class ParticipationMapActivity extends FragmentActivity implements OnMapR
                 if(dataSnapshot.exists()){
                     for(DataSnapshot d : dataSnapshot.getChildren()) {
                         Intent intent = new Intent(ParticipationMapActivity.this, requestResponseActivity.class);
-                        intent.putExtra("organizer", d.getKey());
+                        intent.putExtra("sportId", d.getKey());
                         startActivity(intent);
                     }
                 }

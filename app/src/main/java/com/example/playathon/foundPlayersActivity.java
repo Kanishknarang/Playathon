@@ -18,7 +18,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class foundPlayersActivity extends AppCompatActivity {
 
@@ -29,13 +28,15 @@ public class foundPlayersActivity extends AppCompatActivity {
 
     private ListView listView;
 
-    ArrayList players;
+
+    ArrayList playersId;
+    ArrayList playerNames;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_found_players);
 
-        players = new ArrayList();
+        playersId = new ArrayList();
         mAuth = FirebaseAuth.getInstance();
         userId = mAuth.getCurrentUser().getUid();
         databaseReference = FirebaseDatabase.getInstance().getReference().child("organizer requests").child(userId).child("found players");
@@ -51,8 +52,9 @@ public class foundPlayersActivity extends AppCompatActivity {
                     int i = 0;
                     for(DataSnapshot d : dataSnapshot.getChildren()) {
                         //Log.d(TAG, "onCreate: "+ d.getKey());
-                        players.add(d.getKey()) ;
-                        Log.i(TAG, "onCreate: "+ players);
+                        playersId.add(d.getKey()) ;
+
+                        Log.i(TAG, "onCreate: "+ playersId);
 
                     }
 
@@ -60,14 +62,16 @@ public class foundPlayersActivity extends AppCompatActivity {
 
                 }
 
-                listView.setAdapter(new ArrayAdapter(foundPlayersActivity.this,android.R.layout.simple_list_item_1, players));
+                listView.setAdapter(new ArrayAdapter(foundPlayersActivity.this,android.R.layout.simple_list_item_1, playersId));
 
                 listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                         String player = (String) adapterView.getItemAtPosition(i);
+                        Intent backItent = getIntent();
                         Intent intent = new Intent(foundPlayersActivity.this, SendRequestActivity.class);
                         intent.putExtra("player", player);
+                        intent.putExtra("sportId", backItent.getStringExtra("sportId"));
                         startActivity(intent);
                     }
                 });

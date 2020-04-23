@@ -53,6 +53,7 @@ public class OrganizerMapActivity extends FragmentActivity implements OnMapReady
     private String participantfoundId;
 
     private DatabaseReference databaseRef;
+    private DatabaseReference organizedSports;
     private FirebaseAuth mAuth;
 
     private String userId;
@@ -61,6 +62,7 @@ public class OrganizerMapActivity extends FragmentActivity implements OnMapReady
     private Button searchPlayersbtn;
 
     private Boolean findPlayers =true;
+    private Intent intent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,7 +75,7 @@ public class OrganizerMapActivity extends FragmentActivity implements OnMapReady
 
         mAuth = FirebaseAuth.getInstance();
 
-        Intent intent = getIntent();
+        intent = getIntent();
 
         logoutBtn = (Button) findViewById(R.id.organization_map_logout_btn);
 
@@ -203,8 +205,12 @@ public class OrganizerMapActivity extends FragmentActivity implements OnMapReady
                 DatabaseReference participantReference = FirebaseDatabase.getInstance().getReference().child("organizer requests").child(userId).child("found players").child(participantfoundId);
                 participantReference.setValue(true);
 
-                DatabaseReference  organizedSports = FirebaseDatabase.getInstance().getReference().child("organized sports").push().child("organizer").child(userId);
-                organizedSports.setValue(true);
+                organizedSports = FirebaseDatabase.getInstance().getReference().child("organized sports").push();
+                organizedSports.child("organizer").setValue(userId);
+                organizedSports.child("sport").setValue(intent.getStringExtra("sport"));
+                organizedSports.child("venue").setValue(intent.getStringExtra("venue"));
+
+                FirebaseDatabase.getInstance().getReference().child("users").child(userId).child("sports").child("organized").child(organizedSports.getKey()).setValue(true);
 
 
 
@@ -224,6 +230,7 @@ public class OrganizerMapActivity extends FragmentActivity implements OnMapReady
             @Override
             public void onGeoQueryReady() {
                 Intent intent = new Intent(OrganizerMapActivity.this, foundPlayersActivity.class);
+                intent.putExtra("sportId",organizedSports.getKey());
                 startActivity(intent);
 
 

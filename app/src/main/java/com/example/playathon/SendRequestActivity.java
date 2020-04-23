@@ -30,9 +30,10 @@ public class SendRequestActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         userId = mAuth.getCurrentUser().getUid();
 
-        Intent intent = getIntent();
+        final Intent intent = getIntent();
 
         String playerName = intent.getStringExtra("player");
+
         databaseReference = FirebaseDatabase.getInstance().getReference().child("Participants requests").child(playerName);
         foundPlayerNameTextView = (TextView) findViewById(R.id.send_request_textview);
         sendRequestbtn = (Button) findViewById(R.id.send_request_btn);
@@ -41,7 +42,7 @@ public class SendRequestActivity extends AppCompatActivity {
         sendRequestbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                databaseReference = databaseReference.child(userId);
+                databaseReference = databaseReference.child(intent.getStringExtra("sportId"));
                 databaseReference.setValue("true");
             }
         });
